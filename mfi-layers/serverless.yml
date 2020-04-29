@@ -1,0 +1,51 @@
+service: mfi-layers
+
+provider:
+  name: aws
+  runtime: python3.6
+  region: us-east-1
+  timeout: 900
+
+layers:
+  selenium:
+    path: selenium
+    compatibleRuntimes:
+      - python3.6
+
+  chromedriver:
+    path: chromedriver
+    description: chrome driver layer
+    compatibleRuntimes:
+      - python3.6
+
+  bs4:
+    path: bs4
+    compatibleRuntimes:
+      - python3.6
+
+  lxml:
+    path: lxml
+    compatibleRuntimes:
+      - python3.6
+
+  extruct:
+    path: extruct
+    compatibleRuntimes:
+      - python3.6
+
+
+package:
+  individually: true
+
+resources:
+  Outputs:
+    SeleniumLayerExport:
+        Value:
+          Ref: SeleniumLambdaLayer
+        Export:
+          Name: SeleniumLambdaLayer
+    ChromedriverLayerExport:
+      Value:
+        Ref: ChromedriverLambdaLayer
+      Export:
+        Name: ChromedriverLambdaLayer

@@ -1,0 +1,27 @@
+
+service: mfi-checker
+
+provider:
+  name: aws
+  runtime: python3.6
+  region: us-east-1
+  timeout: 900
+  memorySize: 1024
+
+functions:
+  hello:
+    handler: handler.hello
+    description: MFI Checker - zeo.org
+    layers:
+      - ${cf:mfi-layers-dev.SeleniumLayerExport}
+      - ${cf:mfi-layers-dev.ChromedriverLayerExport}
+      - bs4 arn
+      - extruct arn
+      - lxml arn
+
+plugins:
+  - serverless-python-requirements
+
+custom:
+  pythonRequirements:
+    dockerizePip: non-linux

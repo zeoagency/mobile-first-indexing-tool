@@ -1,0 +1,20 @@
+service: mfi-contents
+
+provider:
+  name: aws
+  runtime: python3.6
+  region: us-east-1
+  timeout: 900
+  memorySize: 512
+
+functions:
+  hello:
+    handler: handler.hello
+    description: MFI Checker Content - zeo.org
+
+plugins:
+  - serverless-python-requirements
+
+custom:
+  pythonRequirements:
+    dockerizePip: non-linux
